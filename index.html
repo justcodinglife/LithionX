@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LithionX - Custom Lithium-Ion Battery Solutions</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            /* background-color: #f8f9fa; */
+            background-color: #d6dbdf;
+            color: #212529;
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: #198754; /* Professional green */
+            color: white;
+            padding: 15px 30px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        header:hover {
+            background-color: #157347; /* Darker green on hover */
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: rotate(5deg); /* Fun animated hover */
+            color: #ffc107;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #ffc107;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            color: #ffc107; /* Yellow accent */
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(135deg, #198754, #0d6efd); /* Professional green to blue */
+            color: white;
+            text-align: center;
+            padding: 200px 30px 150px;
+            animation: gradientAnimation 10s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        #hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+
+        #hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease 0.5s;
+            animation-fill-mode: both;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn {
+            background-color: #ffc107;
+            color: #212529;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 20px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .btn:hover {
+            background-color: #ffca2c;
+            transform: scale(1.1);
+        }
+
+         /* Responsive Navigation */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: #198754;
+                padding: 20px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            text-align: center;
+            color: #198754;
+            margin-bottom: 50px;
+            font-size: 36px;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* About Section */
+        #about {
+            background-color: #fff;
+        }
+
+        /* Products Section */
+        #products {
+            background-color: #f8f9fa;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Market Trends Section */
+        #market-trends {
+            background-color: #fff;
+        }
+
+        .trend-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .trend-list li {
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: background-color 0.3s ease;
+        }
+
+        .trend-list li:hover {
+            background-color: #e9ecef;
+        }
+
+        /* Services Section */
+        #services {
+            background-color: #f8f9fa;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Founders Section */
+        #founders {
+            background-color: #fff;
+        }
+
+        .founder-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .founder-card {
+            /* background-color: #f8f9fa; */
+            background-color: #c4d9ef;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .founder-card:hover {
+            /* transform: rotate(3deg); */
+            transform: scale(1.05);
+        }
+
+        .founder-card img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 3px solid #198754;
+        }
+
+        /* FAQ Section */
+        #faq {
+            background-color: #f8f9fa;
+        }
+
+        .faq-item {
+            margin-bottom: 30px;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            color: #0d6efd;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: #198754;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 10px 0;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: #0d6efd;
+            color: white;
+            text-align: center;
+        }
+
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button.btn {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #198754;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 16px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #hero h1 {
+                font-size: 40px;
+            }
+
+            #hero p {
+                font-size: 20px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #hero {
+                padding: 150px 20px 100px;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+        }
+
+       * Services Section */
+#services {
+    background-color: #f8f9fa; /* Light gray background for consistency */
+    padding: 80px 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+#services.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#services h2 {
+    text-align: center;
+    color: #198754; /* Professional green */
+    margin-bottom: 50px;
+    font-size: 36px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: scale(1.05); /* Slight scale-up on hover */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.service-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover img {
+    transform: scale(1.05); /* Image zooms slightly on hover */
+}
+
+.service-card h3 {
+    color: #198754;
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.service-card p {
+    color: #212529;
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #services {
+        padding: 60px 20px;
+    }
+
+    #services h2 {
+        font-size: 30px;
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="#home" class="logo">LithionX</a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#market-trends">Market Trends</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#founders">Founders</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <!-- The Hero Section is the main banner at the top of the website. It grabs attention with a big headline, a short description, and a call-to-action button. 
+         What to do: Customize the text to highlight your company's key benefits. Add a background image if possible for better visuals. 
+         It explains what LithionX does right away: providing local, affordable battery solutions. -->
+    <section id="home" id="hero">
+        <h1>Empowering India's Green Future with LithionX</h1>
+        <p>Local, Affordable, and Custom Lithium-Ion Battery Packs for EVs, Solar, Drones, and More. Safe, Sustainable, and Scalable Solutions Tailored for You.</p>
+        <a href="#contact" class="btn">Contact Us Today</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About LithionX</h2>
+        <p>India’s EV and solar battery demand is growing rapidly. 80% of lithium-ion battery packs are imported from China, which are costly, unsafe, and difficult to repair. There's a lack of local assembling units and trained technicians.</p>
+        <p>LithionX establishes local lithium-ion battery assembling units, providing custom packs for EVs, solar energy, drones, and e-bikes. With advanced BMS, our packs are safe, high-performing, affordable, and repairable.</p>
+        <p>Business Model: B2B supply, B2C sales, services, and training. Market: ₹60,000+ crore in 2025, reaching ₹1.5 lakh crore by 2030.</p>
+        <p>Value: High performance, 30% cheaper, safe, customizable, sustainable. USP: Local manufacturing with global standards.</p>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products">
+        <h2>Our Products</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="photo/images (3).jpg" alt="EV Battery Pack">
+                <h3>Custom EV Battery Packs</h3>
+                <p>Affordable, safe, and repairable packs for electric vehicles.</p>
+            </div>
+            <div class="product-card">
+                <img src="photo/Solar Energy Batteries.jpg" alt="Solar Battery">
+                <h3>Solar Energy Batteries</h3>
+                <p>Custom solutions for renewable energy systems and UPS.</p>
+            </div>
+            <div class="product-card">
+                <img src="photo/Drone and E-Bike Batteries.png" alt="Drone Battery">
+                <h3>Drone and E-Bike Batteries</h3>
+                <p>High-performance, customizable packs for various applications.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Trends Section -->
+    <section id="market-trends">
+        <h2>EV Market Trends in India (2025)</h2>
+        <ul class="trend-list">
+            <li>In FY 2024-25, over 2 million EVs were sold in India, marking a 15.68% year-over-year growth, with e-two-wheelers dominating at 59.4% of sales.</li>
+            <li>The Indian EV market is projected to reach $54.41 billion in 2025, growing from 5% of the auto sector in 2024 to 30% by 2030.</li>
+            <li>By 2025, EV sales could surpass 700,000 units annually, driven by government incentives, local manufacturing, and infrastructure development.</li>
+            <li>Production of battery-powered passenger vehicles expected to soar by 140% to approximately 301,400 units in 2025.</li>
+            <li>Key focus on two-wheelers and three-wheelers, with top states like Uttar Pradesh, Maharashtra, and Karnataka leading adoption.</li>
+            <li>Government's EV policy emphasizes incentives, charging networks, and localized production to accelerate the EV revolution.</li>
+        </ul>
+    </section>
+
+    <!-- Services Section -->
+     <section id="services">
+        <h2>Our Services</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <img src="photo/Battery Testing & Repair.jpg" alt="Battery Testing">
+                <h3>Battery Testing & Repair</h3>
+                <p>Professional testing, maintenance, and repair services for lithium-ion batteries.</p>
+            </div>
+            <div class="service-card">
+                <img src="photo/Custom Assembly.jpg" alt="Custom Assembly">
+                <h3>Custom Assembly</h3>
+                <p>Design and assemble battery packs tailored to your specific needs.</p>
+            </div>
+            <div class="service-card">
+                <img src="photo/Training Workshops.jpg" alt="Training Workshops">
+                <h3>Training Workshops</h3>
+                <p>Skill development programs for Diploma & ITI students in battery technology.</p>
+            </div>
+        </div>
+    </section>
+    <!-- <section id="services">
+        <h2>Our Services</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <h3>Battery Testing & Repair</h3>
+                <p>Professional testing, maintenance, and repair services for lithium-ion batteries.</p>
+            </div>
+            <div class="service-card">
+                <h3>Custom Assembly</h3>
+                <p>Design and assemble battery packs tailored to your specific needs.</p>
+            </div>
+            <div class="service-card">
+                <h3>Training Workshops</h3>
+                <p>Skill development programs for Diploma & ITI students in battery technology.</p>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Founders Section -->
+    <section id="founders">
+        <h2>Our Founders</h2>
+        <div class="founder-grid">
+            <div class="founder-card">
+                <img src="photo/chandan.png" alt="Chandan Kumar">
+                <h3>Chandan Kumar</h3>
+                <p>Founder & Team Lead</p>
+            </div>
+            <div class="founder-card">
+                <img src="photo/ravikant-kumar.jpeg" alt="Ravikant Kumar">
+                <h3>Ravikant Kumar</h3>
+                <p>Co-Founder & Operations Lead</p>
+            </div>
+            <div class="founder-card">
+                <img src="photo/samridhi_hamaraj.png" alt="Samridhi Kumari">
+                <h3>Samridhi Kumari</h3>
+                <p>Co-Founder & Technical Lead</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <div class="faq-question">What makes LithionX batteries different?</div>
+            <div class="faq-answer">Our batteries are locally assembled, customizable, 30% cheaper, and include advanced BMS for safety.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Do you offer repair services?</div>
+            <div class="faq-answer">Yes, we provide testing, repair, and maintenance for lithium-ion batteries.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">How can I contact you?</div>
+            <div class="faq-answer">Use the contact form below or email us at ck7825453@gmail.com.</div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Fill out the form below, and we'll get back to you soon. Messages will be sent directly to ck7825453@gmail.com.</p>
+        <!-- For direct email sending without mailto, sign up at formspree.io, create a form with your email, and replace the action URL with https://formspree.io/f/your_form_id -->
+        <form action="https://formspree.io/f/{replace_with_your_form_id}" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+        <p>Email: ck7825453@gmail.com</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 LithionX. All rights reserved. | Designed for a Sustainable Future.</p>
+    </footer>
+
+    <script>
+        // Simple FAQ toggle
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.nextElementSibling;
+                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+
+        // Fade in sections on scroll
+        const sections = document.querySelectorAll('section');
+        const options = {
+            threshold: 0.1
+        };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, options);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+</body>
+</html>
